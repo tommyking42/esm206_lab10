@@ -1,0 +1,53 @@
+---
+title: "ESM 206 Lab 10"
+author: "Tommy King"
+date: "11/30/2021"
+output: html_document
+---
+
+# Learning fun and sometimes useful stuff! 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(beepr)
+library(paletteer)
+library(praise)
+library(sf)
+library(cowsay)
+library(tidyverse)
+library(usethis)
+library(janitor)
+```
+
+## beepr beeps
+
+Use the function 'beep()' in the beepr package to make an audio alert when your code is done running. 
+
+```{r, eval=FALSE}
+for (i in rev(seq(1:9999))) {
+  
+  print(paste(i, "bottles of beer on the wall"))
+  
+}
+
+# beep(9)
+```
+
+# praise and cowsay
+
+Packages built with a single purpose: to be kind and fun. 
+```{r}
+praise("${Exclamation}, ${EXCLAMATION}... ${exclamation}!!!!")
+
+praise("Holy ${creating}, Grandma - she is ${ADJECTIVE}!")
+```
+
+## paletteer to access thousands of color palettes
+```{r}
+storms %>% group_by(name) %>% 
+  summarize(min_pressure = min(pressure, na.rm = TRUE)) %>% 
+  slice_min(n=10, min_pressure) %>% 
+  ggplot(aes(x = min_pressure, y = name)) +
+  geom_col(aes(fill = name))+ 
+  scale_fill_paletteer_d("palettetown::starmie")
+```
+
