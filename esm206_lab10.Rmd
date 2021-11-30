@@ -51,3 +51,20 @@ storms %>% group_by(name) %>%
   scale_fill_paletteer_d("palettetown::starmie")
 ```
 
+### One spatial example
+```{r}
+vegetation <- read_sf("doc.kml") %>% 
+  select(Name) %>% 
+  clean_names()
+
+ggplot(data = vegetation) +
+  geom_sf(aes(fill= name), color = NA) + 
+  scale_fill_paletteer_d("palettetown::cubone") +
+  theme_minimal() + 
+  labs(title = "Jornada LTER")
+```
+
+```{r}
+ggsave(filename = "my_awesome_map.jpg", width = 8, height = 5)
+```
+
